@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.vini.gerenciador.entities.Banco;
+import br.com.vini.gerenciador.entities.Empresa;
+
 /**
  * Servlet implementation class NovaEmpresaServlet
  */
@@ -23,6 +26,12 @@ public class NovaEmpresaServlet extends HttpServlet {
 
 		System.out.println("Cadastrando nova empresa");
 		var nomeEmpresa = request.getParameter("nome"); //java 10, utilizando o var hu3
+		Empresa empresa = new Empresa();
+		empresa.setNome(nomeEmpresa);
+		
+		Banco banco = new Banco();
+		banco.adiciona(empresa);
+		
 		PrintWriter out = response.getWriter();
 		out.println("<html><body/>Empresa " + nomeEmpresa +" cadastrada com sucesso</body></html>");
 	}
