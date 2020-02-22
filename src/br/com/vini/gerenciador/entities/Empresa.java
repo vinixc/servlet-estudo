@@ -5,6 +5,15 @@ public class Empresa {
 	private Integer id;
 	private String nome;
 	
+	public Empresa(Integer id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+	
+	public Empresa() {
+		
+	}
+	
 	public Integer getId() {
 		return id;
 	}
