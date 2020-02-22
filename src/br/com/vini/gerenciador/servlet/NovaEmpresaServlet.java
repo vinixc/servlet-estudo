@@ -19,10 +19,10 @@ public class NovaEmpresaServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("Cadastrando nova empresa");
-		String nomeEmpresa = request.getParameter("nome");
+		var nomeEmpresa = request.getParameter("nome"); //java 10, utilizando o var hu3
 		PrintWriter out = response.getWriter();
 		out.println("<html><body/>Empresa " + nomeEmpresa +" cadastrada com sucesso</body></html>");
 	}
