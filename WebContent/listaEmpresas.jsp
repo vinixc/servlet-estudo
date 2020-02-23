@@ -10,6 +10,7 @@
 <body>
 	<ul>
 		<%
+		//péssima prática total ---- slc
 		List<Empresa> lista = (List<Empresa>) request.getAttribute("empresas");
 		for(Empresa empresa : lista) {
 		
