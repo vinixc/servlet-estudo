@@ -20,7 +20,7 @@ import br.com.vini.gerenciador.entities.Empresa;
 public class ListaEmpresasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Banco banco = new Banco();
 		List<Empresa> listaEmpresas = banco.getEmpresas();
 		request.setAttribute("empresas", listaEmpresas);
