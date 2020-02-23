@@ -30,7 +30,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("Cadastrando nova empresa");
-		var nomeEmpresa = request.getParameter("nome");//java 10, utilizando o var hu3
+		var nomeEmpresa = request.getParameter("nome");		//java 10, utilizando o var hu3
 		var paramDataAbertura = request.getParameter("data");
 		
 		Date dataAbertura = null;
@@ -48,10 +48,12 @@ public class NovaEmpresaServlet extends HttpServlet {
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 		
-		//chama o jsp
-		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
-		request.setAttribute("empresa", empresa.getNome());
-		rd.forward(request, response);
+		response.sendRedirect("listaEmpresas");
+		
+//		chama o jsp
+//		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
+//		request.setAttribute("empresa", empresa.getNome());
+//		rd.forward(request, response);
 	}
 
 }
