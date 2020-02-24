@@ -14,7 +14,7 @@
 	<form action="${linkServletNovaEmpresa }" method="post">
 		
 		<c:if test="${not empty empresa.id}">
-			Id : <input name="id" value="${empresa.id }" type="text"/>
+			<input name="id" value="${empresa.id }" type="hidden"/>
 		</c:if>
 		
 		Nome : <input type="text" name="nome" value="${empresa.nome}"/>
