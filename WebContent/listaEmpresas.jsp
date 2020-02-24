@@ -20,7 +20,8 @@
 			
 			<li>${empresa.id} - ${empresa.nome} -- Data abertura: 
 			<fmt:formatDate value="${empresa.dataAbertura }" pattern="dd/MM/yyyy"/>
-			<a href="<c:url value="/deleteEmpresa?id=${empresa.id }"/>">Remover</a>
+			<a href="<c:url value="/deleteEmpresa?id=${empresa.id }"/>">Remover</a> 
+			<a href="<c:url value="/updateEmpresa?id=${empresa.id }"/>">Atualizar</a>
 			</li>
 		</c:forEach>
 	</ul>

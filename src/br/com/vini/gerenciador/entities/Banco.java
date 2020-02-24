@@ -16,12 +16,15 @@ public class Banco {
 	
 	public void adiciona(Empresa empresa) {
 		if(!empresas.isEmpty()) {
-			empresa.setId(empresas.get(empresas.size() -1).getId() + 1);
+			if(empresa.getId() == null) {
+				empresa.setId(empresas.get(empresas.size() -1).getId() + 1);
+			}else {
+				empresas.remove(empresa);
+			}
 		}else {
 			empresa.setId(1);
 		}
-			
-		empresas.add(empresa);
+		empresas.add(empresa);	
 	}
 	
 	public static void deleteEmpresa(Integer empresaId) {
@@ -30,5 +33,10 @@ public class Banco {
 	
 	public List<Empresa> getEmpresas(){
 		return Banco.empresas;
+	}
+	
+	public static Empresa getEmpresa(Integer id) {
+		Empresa empresa = empresas.stream().filter(e -> e.getId() == id).findFirst().get();
+		return empresa;
 	}
 }

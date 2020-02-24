@@ -31,6 +31,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 		System.out.println("Cadastrando nova empresa");
 		var nomeEmpresa = request.getParameter("nome");		//java 10, utilizando o var hu3
 		var paramDataAbertura = request.getParameter("data");
+		var id = request.getParameter("id");
 		
 		Date dataAbertura = null;
 		try {
@@ -43,7 +44,9 @@ public class NovaEmpresaServlet extends HttpServlet {
 		Empresa empresa = new Empresa();
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(LocalDate.ofInstant(dataAbertura.toInstant(), ZoneId.systemDefault()));
-		
+		if(id != null) {
+			empresa.setId(Integer.parseInt(id));
+		}
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 		
