@@ -15,8 +15,17 @@ public class Banco {
 	}
 	
 	public void adiciona(Empresa empresa) {
-		empresa.setId(empresas.size() + 1);
+		if(!empresas.isEmpty()) {
+			empresa.setId(empresas.get(empresas.size() -1).getId() + 1);
+		}else {
+			empresa.setId(1);
+		}
+			
 		empresas.add(empresa);
+	}
+	
+	public static void deleteEmpresa(Integer empresaId) {
+		empresas.removeIf(e -> e.getId() == empresaId);
 	}
 	
 	public List<Empresa> getEmpresas(){
