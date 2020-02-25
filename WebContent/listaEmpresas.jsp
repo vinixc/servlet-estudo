@@ -11,6 +11,8 @@
 <title>Java Standard Taglib</title>
 </head>
 <body>
+	
+	Lista de Empresas : 
 		<c:if test="${not empty empresa }" >
 			Empresa ${ empresa } cadastrada com sucesso!
 		</c:if>
@@ -24,8 +26,7 @@
 			<a href="<c:url value="/entrada?acao=UpdateEmpresa&id=${empresa.id }"/>">Atualizar</a>
 			</li>
 		</c:forEach>
-		
-		<a href="/gerenciador/"> Home</a>
 	</ul>
+	<a href="/gerenciador/"> Home</a>
 </body>
 </html>
