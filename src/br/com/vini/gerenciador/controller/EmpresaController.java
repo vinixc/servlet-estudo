@@ -1,6 +1,7 @@
 package br.com.vini.gerenciador.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -16,7 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.vini.gerenciador.entities.Banco;
 import br.com.vini.gerenciador.entities.Empresa;
 
-public class EmpresaController {
+public class EmpresaController implements Acao{
+	
+	private String metodo;
+	private HttpServletRequest request;
+	private HttpServletResponse response;
+	
+	public EmpresaController(String method, HttpServletRequest request, HttpServletResponse response) {
+		this.metodo = method;
+		this.request = request;
+		this.response = response;
+	}
 	
 	public void listaEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("listando empresa");
@@ -31,7 +42,7 @@ public class EmpresaController {
 		System.out.println("removendo empresa");
 		var idEmpresa = request.getParameter("id");
 		Banco.deleteEmpresa(Integer.parseInt(idEmpresa));
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		response.sendRedirect("entrada?acao=listaEmpresa");
 	}
 	
 	public void atualizaEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,7 +77,7 @@ public class EmpresaController {
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 		
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		response.sendRedirect("entrada?acao=listaEmpresa");
 	}
 	
 	public void formNovaEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,5 +85,28 @@ public class EmpresaController {
 		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/view/formNovaEmpresa.jsp");
 		dispacher.forward(request, response);
 	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public void acao(){
+		try {
+		Class classe = Class.forName(this.getClass().getName());
+		Method method = classe.getMethod(this.metodo, new Class[] { HttpServletRequest.class, HttpServletResponse.class});	
+		method.invoke(this, this.request, this.response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public void setMethod(String method) {
+		this.metodo = method;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
+	}
 }

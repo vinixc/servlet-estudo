@@ -13,29 +13,18 @@ import br.com.vini.gerenciador.controller.EmpresaController;
 @WebServlet("/entrada")
 public class EmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private EmpresaController controller;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String paramAcao = request.getParameter("acao");
-		
-		if(paramAcao.equals("ListaEmpresas")) {
-			EmpresaController acao = new EmpresaController();
-			acao.listaEmpresa(request,response);
-			
-		}else if(paramAcao.equals("RemoveEmpresa")) {
-			EmpresaController acao = new EmpresaController();
-			acao.deleteEmpresa(request, response);
-			
-		}else if(paramAcao.equals("UpdateEmpresa")) {
-			EmpresaController acao = new EmpresaController();
-			acao.atualizaEmpresa(request, response);
-		}else if(paramAcao.equals("criarEmpresa")) {
-			EmpresaController acao = new EmpresaController();
-			acao.criarEmpresa(request, response);
-		}else if(paramAcao.equals("formNovaEmpresa")) {
-			EmpresaController acao = new EmpresaController();
-			acao.formNovaEmpresa(request, response);
+		if(controller == null) {
+			controller = new EmpresaController(request.getParameter("acao"),request,response);
+		}else {
+			controller.setMethod(request.getParameter("acao"));
+			controller.setRequest(request);
+			controller.setResponse(response);
 		}
+		controller.acao();
 	}
 
 }
