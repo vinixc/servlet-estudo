@@ -23,7 +23,7 @@ public class EmpresaController {
 		Banco banco = new Banco();
 		List<Empresa> listaEmpresas = banco.getEmpresas();
 		request.setAttribute("empresas", listaEmpresas);
-		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/listaEmpresas.jsp");
 		rd.forward(request, response);
 	}
 	
@@ -39,7 +39,7 @@ public class EmpresaController {
 		Empresa empresa = Banco.getEmpresa(Integer.parseInt(request.getParameter("id")));
 		request.setAttribute("empresa", empresa);
 		
-		RequestDispatcher dispacher = request.getRequestDispatcher("/formNovaEmpresa.jsp");
+		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/view/formNovaEmpresa.jsp");
 		dispacher.forward(request, response);
 	}
 	
@@ -67,6 +67,12 @@ public class EmpresaController {
 		banco.adiciona(empresa);
 		
 		response.sendRedirect("entrada?acao=ListaEmpresas");
+	}
+	
+	public void formNovaEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("form nova empresa");
+		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/view/formNovaEmpresa.jsp");
+		dispacher.forward(request, response);
 	}
 	
 }

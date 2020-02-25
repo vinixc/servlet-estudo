@@ -32,6 +32,9 @@ public class EmpresaServlet extends HttpServlet {
 		}else if(paramAcao.equals("criarEmpresa")) {
 			EmpresaController acao = new EmpresaController();
 			acao.criarEmpresa(request, response);
+		}else if(paramAcao.equals("formNovaEmpresa")) {
+			EmpresaController acao = new EmpresaController();
+			acao.formNovaEmpresa(request, response);
 		}
 	}
 
