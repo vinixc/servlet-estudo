@@ -1,7 +1,6 @@
-package br.com.vini.gerenciador.controller;
+package br.com.vini.gerenciador.controller.impl;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -14,19 +13,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.vini.gerenciador.controller.AcaoImpl;
 import br.com.vini.gerenciador.entities.Banco;
 import br.com.vini.gerenciador.entities.Empresa;
 
-public class EmpresaController implements Acao{
-	
-	private String metodo;
-	private HttpServletRequest request;
-	private HttpServletResponse response;
+public class EmpresaController extends AcaoImpl{
 	
 	public EmpresaController(String method, HttpServletRequest request, HttpServletResponse response) {
-		this.metodo = method;
-		this.request = request;
-		this.response = response;
+		super(method, request, response);
 	}
 	
 	public void listaEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -84,29 +78,5 @@ public class EmpresaController implements Acao{
 		System.out.println("form nova empresa");
 		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/view/formNovaEmpresa.jsp");
 		dispacher.forward(request, response);
-	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
-	public void acao(){
-		try {
-		Class classe = Class.forName(this.getClass().getName());
-		Method method = classe.getMethod(this.metodo, new Class[] { HttpServletRequest.class, HttpServletResponse.class});	
-		method.invoke(this, this.request, this.response);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void setMethod(String method) {
-		this.metodo = method;
-	}
-
-	public void setRequest(HttpServletRequest request) {
-		this.request = request;
-	}
-
-	public void setResponse(HttpServletResponse response) {
-		this.response = response;
 	}
 }
