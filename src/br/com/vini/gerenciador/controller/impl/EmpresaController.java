@@ -25,10 +25,12 @@ public class EmpresaController extends AcaoImpl{
 	
 	public void listaEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("listando empresa");
+		
 		Banco banco = new Banco();
 		List<Empresa> listaEmpresas = banco.getEmpresas();
 		request.setAttribute("empresas", listaEmpresas);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/listaEmpresas.jsp");
+		
 		rd.forward(request, response);
 	}
 	
