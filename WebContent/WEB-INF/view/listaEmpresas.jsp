@@ -27,6 +27,6 @@
 			</li>
 		</c:forEach>
 	</ul>
-	<a href="/gerenciador/"> Home</a>
+	<a href="/gerenciador/entradaLogin?acao=home"> Home</a>
 </body>
 </html>

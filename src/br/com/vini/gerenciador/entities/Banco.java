@@ -42,4 +42,12 @@ public class Banco {
 		Empresa empresa = empresas.stream().filter(e -> e.getId() == id).findFirst().get();
 		return empresa;
 	}
+	
+	public static Usuario existeUsuario(String login, String senha) {
+		Usuario usuario = new Usuario(login, senha);
+		if(usuarios.contains(usuario)) {
+			return usuario;
+		}
+		return null;
+	}
 }
