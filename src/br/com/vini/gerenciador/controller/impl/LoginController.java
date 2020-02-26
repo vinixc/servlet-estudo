@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.vini.gerenciador.controller.AcaoImpl;
 import br.com.vini.gerenciador.entities.Banco;
@@ -28,18 +29,25 @@ public class LoginController extends AcaoImpl{
 		
 		if(usuario != null) {
 			System.out.println("Usuario existe");
+			HttpSession sessao = request.getSession();
+			sessao.setAttribute("usuarioLogado", usuario);
 			dispacher = request.getRequestDispatcher("/WEB-INF/view/bem-vindo.html");
 		}else {
 			dispacher = request.getRequestDispatcher("/WEB-INF/view/formLogin.jsp");
 		}
-		
-		
+
 		dispacher.forward(request, response);
 	}
 	
 	public void home(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Indo para Home");
 		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/view/bem-vindo.html");
+		dispacher.forward(request, response);
+	}
+	
+	public void formLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Indo para Tela de Login");
+		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/view/formLogin.jsp");
 		dispacher.forward(request, response);
 	}
 }
