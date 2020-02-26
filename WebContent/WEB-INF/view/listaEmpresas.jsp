@@ -11,7 +11,10 @@
 <title>Java Standard Taglib</title>
 </head>
 <body>
-
+	
+	<c:import url="logout-parcial.jsp"/>
+	<br>
+	
 	Usuario logado : ${usuarioLogado.login }
 	<br>
 	<br>
@@ -31,6 +34,6 @@
 			</li>
 		</c:forEach>
 	</ul>
-	<a href="/gerenciador/entradaLogin?acao=home"> Home</a>
+	
 </body>
 </html>

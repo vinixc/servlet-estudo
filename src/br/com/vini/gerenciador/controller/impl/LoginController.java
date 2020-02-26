@@ -50,4 +50,11 @@ public class LoginController extends AcaoImpl{
 		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/view/formLogin.jsp");
 		dispacher.forward(request, response);
 	}
+	
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession sessao = request.getSession();
+		sessao.invalidate();
+		response.sendRedirect("entradaLogin?acao=formLogin");
+		
+	}
 }

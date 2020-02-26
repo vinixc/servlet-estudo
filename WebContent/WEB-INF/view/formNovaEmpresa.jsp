@@ -9,7 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+					
+	<c:import url="logout-parcial.jsp"/>
+	<br>
 	
 	<form action="${linkServletNovaEmpresa }" method="post">
 		
