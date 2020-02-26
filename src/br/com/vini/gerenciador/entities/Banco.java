@@ -34,7 +34,7 @@ public class Banco {
 		empresas.removeIf(e -> e.getId() == empresaId);
 	}
 	
-	public List<Empresa> getEmpresas(){
+	public static List<Empresa> getEmpresas(){
 		return Banco.empresas;
 	}
 	
