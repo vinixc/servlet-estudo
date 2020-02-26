@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class AcaoImpl implements Acao{
 	
@@ -22,14 +21,6 @@ public class AcaoImpl implements Acao{
 	@Override
 	public void acao() {
 		try {
-			HttpSession sessao = this.request.getSession();
-			if (sessao.getAttribute("usuarioLogado") == null
-					&& !this.metodo.equals("formLogin") && !this.metodo.equals("login")) {
-				System.out.println("Não autenticado");
-				response.sendRedirect("entradaLogin?acao=formLogin");
-				return;
-			}
-
 			Class classe = Class.forName(this.getClass().getName());
 			Method method = classe.getMethod(this.metodo,
 					new Class[] { HttpServletRequest.class, HttpServletResponse.class });
