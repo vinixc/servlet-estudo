@@ -14,8 +14,8 @@ import br.com.vini.gerenciador.entities.Usuario;
 
 public class LoginController extends AcaoImpl{
 	
-	public LoginController(String method, HttpServletRequest request, HttpServletResponse response) {
-		super(method,request,response);
+	public LoginController() {
+		
 	}
 	
 	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,7 +54,7 @@ public class LoginController extends AcaoImpl{
 	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession sessao = request.getSession();
 		sessao.invalidate();
-		response.sendRedirect("entradaLogin?acao=formLogin");
+		response.sendRedirect("entradaLogin?acao=formLogin&class=LoginController");
 		
 	}
 }

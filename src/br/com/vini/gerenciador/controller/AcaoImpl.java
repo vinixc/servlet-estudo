@@ -11,6 +11,10 @@ public class AcaoImpl implements Acao{
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
+	public AcaoImpl() {
+		
+	}
+	
 	public AcaoImpl(String method, HttpServletRequest request, HttpServletResponse response) {
 		this.metodo = method;
 		this.request = request;

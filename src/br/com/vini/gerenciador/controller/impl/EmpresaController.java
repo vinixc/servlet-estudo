@@ -19,8 +19,8 @@ import br.com.vini.gerenciador.entities.Empresa;
 
 public class EmpresaController extends AcaoImpl{
 	
-	public EmpresaController(String method, HttpServletRequest request, HttpServletResponse response) {
-		super(method, request, response);
+	public EmpresaController() {
+		
 	}
 	
 	public void listaEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class EmpresaController extends AcaoImpl{
 		System.out.println("removendo empresa");
 		var idEmpresa = request.getParameter("id");
 		Banco.deleteEmpresa(Integer.parseInt(idEmpresa));
-		response.sendRedirect("entrada?acao=listaEmpresa");
+		response.sendRedirect("entrada?acao=listaEmpresa&class=EmpresaController");
 	}
 	
 	public void atualizaEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,7 +73,7 @@ public class EmpresaController extends AcaoImpl{
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 		
-		response.sendRedirect("entrada?acao=listaEmpresa");
+		response.sendRedirect("entrada?acao=listaEmpresa&class=EmpresaController");
 	}
 	
 	public void formNovaEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

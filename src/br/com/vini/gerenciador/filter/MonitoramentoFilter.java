@@ -1,4 +1,4 @@
-package br.com.vini.gerenciador.servlet;
+package br.com.vini.gerenciador.filter;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -9,9 +9,8 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 
-@WebFilter(urlPatterns = {"/entrada", "/entradaLogin"})
+//@WebFilter(urlPatterns = {"/entrada", "/entradaLogin"})
 public class MonitoramentoFilter implements Filter{
 
 	@Override
