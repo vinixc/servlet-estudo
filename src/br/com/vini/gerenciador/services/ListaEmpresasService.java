@@ -1,4 +1,4 @@
-package br.com.vini.gerenciador.servlet;
+package br.com.vini.gerenciador.services;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +18,7 @@ import br.com.vini.gerenciador.entities.Empresa;
  * Servlet implementation class EmpresaService
  */
 @WebServlet("/empresas")
-public class EmpresaService extends HttpServlet {
+public class ListaEmpresasService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
