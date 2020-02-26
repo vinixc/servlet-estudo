@@ -1,6 +1,7 @@
 package br.com.vini.gerenciador.filter;
 
 import java.io.IOException;
+import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,6 +12,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import br.com.vini.gerenciador.listener.UsuarioDuplicadoListener;
 
 /**
  * Servlet Filter implementation class AutorizacaoFilter
@@ -28,10 +31,19 @@ public class AutorizacaoFilter implements Filter {
 		String acao = request.getParameter("acao");
 		
 		HttpSession sessao = request.getSession();
-		if (sessao.getAttribute("usuarioLogado") == null
+		Object usuarioLogado = (Object) sessao.getAttribute("usuarioLogado");
+		Set<Object> usuarios = UsuarioDuplicadoListener.getUsuariosLogados();
+		
+		if(!usuarios.contains(usuarioLogado)
+				&& !acao.equals("formLogin") && !acao.equals("login")) {
+			response.sendRedirect("entradaLogin?acao=formLogin&class=LoginController");
+			return;
+		}
+		
+		if (usuarioLogado == null
 				&& !acao.equals("formLogin") && !acao.equals("login")) {
 			System.out.println("Não autenticado");
-			response.sendRedirect("entradaLogin?acao=formLogin");
+			response.sendRedirect("entradaLogin?acao=formLogin&class=LoginController");
 			return;
 		}
 		

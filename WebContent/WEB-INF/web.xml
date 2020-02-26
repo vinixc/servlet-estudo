@@ -15,6 +15,11 @@
   	<url-pattern>/ola</url-pattern>
   </servlet-mapping>
   
+  <listener>
+  	<display-name>UD</display-name>
+  	<listener-class>br.com.vini.gerenciador.listener.UsuarioDuplicadoListener</listener-class>
+  </listener>
+  
   <filter>
   	<filter-name>MF</filter-name>
   	<filter-class>br.com.vini.gerenciador.filter.MonitoramentoFilter</filter-class>
