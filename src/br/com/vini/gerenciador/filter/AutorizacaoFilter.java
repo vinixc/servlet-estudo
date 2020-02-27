@@ -42,7 +42,7 @@ public class AutorizacaoFilter implements Filter {
 		
 		if (usuarioLogado == null
 				&& !acao.equals("formLogin") && !acao.equals("login")) {
-			System.out.println("Não autenticado");
+			System.out.println("Nao autenticado");
 			response.sendRedirect("entradaLogin?acao=formLogin&class=LoginController");
 			return;
 		}
