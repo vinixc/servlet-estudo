@@ -27,6 +27,7 @@ public class EmpresaController extends AcaoImpl{
 		System.out.println("listando empresa");
 		
 		Banco banco = new Banco();
+		@SuppressWarnings("static-access")
 		List<Empresa> listaEmpresas = banco.getEmpresas();
 		request.setAttribute("empresas", listaEmpresas);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/listaEmpresas.jsp");
